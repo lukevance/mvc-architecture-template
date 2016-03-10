@@ -15,9 +15,12 @@ function isAuthenticated (req, res, next){
 }
 
 function isAuthorized (req, res, next) {
+  // check jwt for id info
   let userId = req.session.jwtStuff.id;
+  // send id to function for database lookup
   userModel.getById(userId)
   .then( (result) => {
+    // use response from database to check role of user
     if(result.role === 'admin'){
       next();
     } else {

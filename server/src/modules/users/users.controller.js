@@ -26,6 +26,7 @@ function getById (req, res, next) {
 }
 
 function update (req, res, next) {
+  // authentication, permission to change info?
   let userId = req.params.id;
   userModel.update(userId)
   .then( (result) => {
@@ -64,6 +65,7 @@ function create (req, res, next) {
 }
 
 function deleteOne (req, res, next) {
+  // authentication, do they have permission to delete this user?
   let userId = req.params.id;
 
   userModel.create(userId)
@@ -87,4 +89,4 @@ module.exports = {
   create,
   update,
   delete
-}
+};
